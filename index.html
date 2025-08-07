@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table, th, td{
+                    border:1px solid black;
+        }
+      
+    </style>
+    <title>Table</title>
+</head>
+<body>
+    <table style="width: 100%;">
+        <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Course</th>
+        <th>Sec</th>
+        <th>dob</th>
+        <th>email</th>
+        <th>phone Number</th>
+        </tr>
+        <tr>
+            <td>Aryan</td>
+            <td>tomar</td>
+            <td>BCA</td>
+            <td>A</td>
+            <td>12-07-2007</td>
+            <td>Aryan@gmail.com</td>
+            <td>8864810935</td>
+        </tr>
+          <script>
+    fetch('https://script.google.com/macros/s/AKfycbxwan_vRRryBFc3I20-TgagyQMa1hx5jSLkfxU3gD45335UNgwikh8gVtObf3ZubMHC/exec')
+      .then(response => response.json())
+      .then(result => {
+        const tableBody = document.querySelector('#studentTable tbody');
+        result.data.forEach(student => {
+          const row = `
+            <tr>
+              <td>${student.first_name}</td>
+              <td>${student.last_name}</td>
+              <td>${student.course_name}</td>
+              <td>${student.sec}</td>
+              <td>${student.email}</td>
+              <td>${student.phone}</td>
+              <td>${student.address}</td>
+              <td>${student.dob}</td>
+            </tr>
+          `;
+          tableBody.insertAdjacentHTML('beforeend', row);
+        });
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  </script>
+    </table>
+</body>
+</html>
